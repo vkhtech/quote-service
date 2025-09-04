@@ -15,30 +15,35 @@ class QuoteServiceApplicationTests {
     @Autowired
     WebTestClient webTestClient;
 
-    @Test
-    void whenAllQuotesThenReturn() {
-        webTestClient.get().uri("/quotes")
-                .exchange()
-                .expectStatus().is2xxSuccessful()
-                .expectBodyList(Quote.class);
-    }
+	@Test
+	void whenAllQuotesThenReturn() {
+		webTestClient
+				.get()
+				.uri("/quotes")
+				.exchange()
+				.expectStatus().is2xxSuccessful()
+				.expectBodyList(Quote.class);
+	}
 
-    @Test
-    void whenRandomQuoteThenReturn() {
-        webTestClient.get().uri("/quotes/random")
-                .exchange()
-                .expectStatus().is2xxSuccessful()
-                .expectBody(Quote.class);
-    }
+	@Test
+	void whenRandomQuoteThenReturn() {
+		webTestClient
+				.get()
+				.uri("/quotes/random")
+				.exchange()
+				.expectStatus().is2xxSuccessful()
+				.expectBody(Quote.class);
+	}
 
-    @Test
-    void whenRandomQuoteByGenreThenReturn() {
-        webTestClient.get().uri("/quotes/random/FANTASY")
-                .exchange()
-                .expectStatus().is2xxSuccessful()
-                .expectBody(Quote.class)
-                .value(quote -> assertThat(quote.genre()).isEqualTo(Genre.FANTASY));
-    }
-
+	@Test
+	void whenRandomQuoteByGenreThenReturn() {
+		webTestClient
+				.get()
+				.uri("/quotes/random/FANTASY")
+				.exchange()
+				.expectStatus().is2xxSuccessful()
+				.expectBody(Quote.class)
+				.value(quote -> assertThat(quote.genre()).isEqualTo(Genre.FANTASY));
+	}
 
 }
